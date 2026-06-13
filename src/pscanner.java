@@ -21,7 +21,9 @@ public class pscanner {
         s.connect(new InetSocketAddress(targetIP,targetPort),timeoutms);
         results.add("port: "+ targetPort +" is accsessible.");
     }
-    catch (Exception e) {}}
+    catch (Exception e) {
+        System.out.println("Port: "+targetPort +" not accsessible.");
+    }}
 
 
     //scans ports by user preference
@@ -59,7 +61,7 @@ public class pscanner {
             }}
         //report creation 
         if (!results.isEmpty()) {
-            File f=new File("Report-"+LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm"))+".txt");
+            File f=new File("Report-"+graphic.targetIP+"-"+LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm"))+".txt");
             try(PrintWriter fwrite=new PrintWriter(f)){
                 synchronized (results) {
                 for(int c=0;c<results.size();c++){
